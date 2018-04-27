@@ -1,0 +1,81 @@
+body {
+  font-size: $font-size-base;
+  font-family: $font-primary;
+  color: $font-dark;
+  background-color: $primary-bg;
+}
+p { margin-top: 0.8em; }
+a {
+  text-decoration: none;
+  color: $green;
+  &:hover { color: darken($green, 10%); }
+}
+hr {
+  height: 1px;
+  color: #ddd;
+  background-color: #ddd;
+  border: none;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: $font-heading; }
+@for $i from 1 through 7 {
+  h#{$i}, .is-size-#{$i} {
+    font-size: nth($heading-sizes, $i);
+  }
+}
+
+label {
+  color: #aaa;
+  font-size: .8em;
+}
+input, textarea {
+  font-family: inherit;
+  padding: .8em 0 .5em 0;
+  border: none;
+  border-bottom: 1px solid #eee;
+  margin: 0 0 1em 0;
+  width: 100%;
+  border-radius: .1rem;
+  font-size: 0.9em;
+  transition: .3s border-color ease;
+}
+
+input:focus, textarea:focus {
+  border-color: $blue;
+}
+
+input:required, input:invalid, textarea:required, textarea:invalid {
+  box-shadow: none;
+}
+
+button {
+  font-family: inherit;
+  padding: 0.6em 1em;
+  border: 1px solid #bbb;
+  background-color: #fff;
+  border-radius: .2em;
+  cursor: pointer;
+
+  &.is-green {
+    background-color: $green;
+    color: #fff;
+    border: none;
+    &:hover {
+      background-color: darken($green, 10%);
+    }
+  }
+  &.is-blue {
+    background-color: $blue;
+    color: #fff;
+    border: none;
+    &:hover {
+      background-color: darken($blue, 10%);
+    }
+  }
+}
+
+
+::placeholder {
+  color: silver;
+  opacity: 1;
+}

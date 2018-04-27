@@ -1,0 +1,470 @@
+@import '../css/minireset.min';
+
+$font-primary: 'Noto Sans', sans-serif;
+$font-heading: 'Hind', sans-serif;
+$font-brand: 'Rancho', sans-serif;
+
+$font-size-base: 16px;
+$font-size-sm: 0.8rem;
+$font-size-lg: 1.2rem;
+$font-size-xl: 1.5rem;
+
+$font-size-brand: 2.3rem;
+
+$primary-bg: #fbfbfb;
+$nav-bg: rgba(0, 0, 0, 0.9);
+
+$font-light: #fff;
+$font-dark: #555;
+
+$blue: #039be5;
+$green: #66bb6a;
+
+$heading-sizes: 3em, 2.5em, 2em, 1.5em, 1.25em, 1em, .75em;
+
+$break-tablet: 768px;
+$break-desktop: 1024px;
+
+@mixin desktop {
+  @media (min-width: #{$break-desktop}) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: #{$break-tablet}) and (max-width: #{$break-desktop - 1px}) {
+    @content;
+  }
+}
+@mixin phone {
+  @media (max-width: #{$break-tablet - 1px}) {
+    @content;
+  }
+}
+
+body {
+  font-size: $font-size-base;
+  font-family: $font-primary;
+  color: $font-dark;
+  background-color: $primary-bg;
+}
+p { margin-top: 0.8em; }
+a {
+  text-decoration: none;
+  color: $green;
+  &:hover { color: darken($green, 10%); }
+}
+hr {
+  height: 1px;
+  color: #ddd;
+  background-color: #ddd;
+  border: none;
+}
+h1, h2, h3, h4, h5, h6 { font-family: $font-heading; }
+@for $i from 1 through 7 {
+  h#{$i}, .is-size-#{$i} {
+    font-size: nth($heading-sizes, $i);
+  }
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  background-color: $nav-bg;
+  box-shadow: 0 0 10px #eee;
+  position: relative;
+  
+  &.is-fixed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  &.is-transparent {
+    background-color: $nav-bg;
+    box-shadow: none;
+    a:not(.nav-brand) {
+      color: $font-light;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    margin-right: 1.5em;
+    color: $font-dark;
+  }
+  .nav-brand {
+    display: inline-block;
+    font-size: $font-size-brand;
+    margin-left: 0.8em;
+  }
+  >.right {
+    margin-right: 1em;
+    @include phone {
+      display: none;
+    }
+  }
+  >.burger {
+    display: none;
+    margin-right: 1em;
+
+    >.trigger {
+      color: $font-light;
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    >.links {
+      max-height: 0;
+
+      overflow: hidden;
+      position: absolute;
+      background-color: $nav-bg;
+      width: 100%;
+      left: 0;
+      top: 100%;
+      padding: 0 1em 0 2em;
+      transition: .3s max-height ease;
+      >a {
+        display: block;
+        margin-top: 1.2em;
+
+        &:last-child {
+          margin-bottom: 1em;
+        }
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+    
+    &:focus > .links {
+      max-height: 70vh;
+    }
+    @include phone {
+      display: block;
+    }
+  }
+}
+
+.brand {
+  font-weight: bold;
+  color: $green;
+  font-family: $font-brand;
+}
+
+section {
+  padding: 1em 1em 3em 1em;
+  >.title {
+    text-align: center;
+    margin: 1em 10px;
+  }
+  >.content {
+    margin: 0 auto;
+    line-height: 1.5em;
+    max-width: 1024px;
+    text-align: center;
+  }
+}
+
+section.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
+  min-height: 100vh;
+  background-image: url('https://watchstreetconsulting.com/wp-content/uploads/2015/04/web_design_desk2.jpg');
+  background-size: cover;
+  position: relative;
+  color: $font-light;
+  >.overlay {
+    position: absolute;
+    height: 100%; width: 100%;
+    left: 0; top: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  >.intro-title, >.intro-subtitle { text-align: center; }
+  >.intro-title { margin-bottom: .1em; }
+}
+
+section.why {
+  background-color: #fff;
+
+  .reason {
+    text-align: center;
+    padding: 15px 10px 30px 10px;
+    >.title {
+      margin-top: 1em;
+      font-weight: 600;
+    }
+    >.description {
+      margin-top: 1em;
+      font-size: 0.9em;
+      color: #888;
+    }
+  }
+}
+
+section.why-2 {
+  .reason-list-item {
+    $margin: 20px;
+
+    display: flex;
+    flex-direction: row;
+    text-align: left !important;
+    padding: 20px 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px #eee;
+
+    border-left: 3px solid $blue;
+    margin: $margin;
+    height: calc(100% - #{$margin * 2});
+
+    @include phone {
+      flex-direction: column;
+    }
+
+    >.icon {
+      margin: 0 10px;
+      >.number {
+        background-color: $blue;
+        display: inline-flex;
+        color: $font-light;
+        border-radius: 50%;
+        height: 2em;
+        width: 2rem;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+      }
+      @include phone {
+        margin-bottom: 1em;
+        text-align: center;
+      }
+    }
+    >.content {
+      margin: 0 10px;
+      >.title {
+        @include phone {
+          text-align: center;
+        }
+      }
+      >.description {
+        margin-top: 10px;
+        font-size: 0.9em;
+      }
+    }
+  }
+}
+
+section.clients {
+  background-color: #fff;
+  min-height: 300px;
+
+  .clients-container {
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    @include phone {
+      justify-content: center;
+    }
+
+    >.client {
+      >a { color: $font-dark; }
+      flex: 0 0 25%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      margin-bottom: 20px;
+      @include phone {
+        flex: 0 0 50%;
+      }
+      @include tablet {
+        flex: 0 0 33.33%;
+      }
+    }
+  }
+}
+
+section.contacts {
+  position: relative;
+
+  >.background {
+    height: 100%; width: 100%;
+    position: absolute;
+    left: 0; top: 0;
+    background: $blue;
+    background: linear-gradient($blue 50%, #fff 50%);
+    z-index: -1;
+  }
+  >.content {
+    box-shadow: 0 0 1em #aaa;
+  }
+  .messenger-container {
+    background-color: #fff;
+    padding: 3.5em 2.5em;
+
+    >.title {
+      margin-bottom: 2em;
+    }
+  }
+  .contacts-container {
+    height: 100%;
+    background-color: #01579b;
+    color: #fff;
+    padding: 3.5em 2em;
+    >.title {
+      margin-bottom: 2em;
+    }
+    >.contact-item {
+      display: flex;
+      align-items: center;
+      margin-top: 2em;
+
+      >.contact-icon {
+        flex: 0 0 50px;
+        font-size: 2em;
+        text-align: center;
+        margin-right: 10px;
+      }
+      >.contact-info {
+        font-size: .95em;
+      }
+    }
+  }
+}
+
+footer {
+  padding: 1em;
+  text-align: center;
+  color: #999;
+}
+
+// utilities
+
+.is-bold {
+  font-weight: 600;
+}
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-white { color: $font-light; }
+.text-dark { color: $font-dark; }
+.text-blue { color: $blue; }
+.text-gold { color: gold; }
+.text-green { color: $green; }
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  &.is-gapped {
+    margin: -10px;
+    >.column {
+      padding: 10px;
+    }
+  }
+  >.column {
+    box-sizing: border-box;
+    @for $i from 12 through 1 {
+      &.is-#{$i} {
+        @include desktop {
+          width: ($i / 12) * 100%;
+        }
+        @include tablet {
+          width: ($i / 12) * 100%;
+        }
+      }
+    }
+    @include phone { width: 100%; }
+  }
+}
+
+@for $i from 1 through 6 {
+  .gutter-top-#{$i*5} { margin-top: (5 * $i)+px; }
+  .gutter-left-#{$i*5} { margin-left: (5 * $i)+px; }
+  .gutter-right-#{$i*5} { margin-right: (5 * $i)+px; }
+  .gutter-bottom-#{$i*5} { margin-bottom: (5 * $i)+px; }
+}
+
+.left-right {
+  display: flex;
+  align-items: baseline;
+
+  >:nth-child(2) {
+    margin-left: 1em;
+  }
+  &.valign {
+    align-items: center;
+  }
+  &.halign {
+    justify-content: center;
+  }
+}
+
+.is-centered {
+  justify-content: center;
+}
+
+label {
+  color: #aaa;
+  font-size: .8em;
+}
+input, textarea {
+  font-family: inherit;
+  padding: .8em 0 .5em 0;
+  border: none;
+  border-bottom: 1px solid #eee;
+  margin: 0 0 1em 0;
+  width: 100%;
+  border-radius: .1rem;
+  font-size: 0.9em;
+  transition: .3s border-color ease;
+}
+
+input:focus, textarea:focus {
+  border-color: $blue;
+}
+
+input:required, input:invalid, textarea:required, textarea:invalid {
+  box-shadow: none;
+}
+
+button {
+  font-family: inherit;
+  padding: 0.6em 1em;
+  border: 1px solid #bbb;
+  background-color: #fff;
+  border-radius: .2em;
+  cursor: pointer;
+
+  &.is-green {
+    background-color: $green;
+    color: #fff;
+    border: none;
+    &:hover {
+      background-color: darken($green, 10%);
+    }
+  }
+  &.is-blue {
+    background-color: $blue;
+    color: #fff;
+    border: none;
+    &:hover {
+      background-color: darken($blue, 10%);
+    }
+  }
+}
+
+
+::placeholder {
+  color: silver;
+  opacity: 1;
+}

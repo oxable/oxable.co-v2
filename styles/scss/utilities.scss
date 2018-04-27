@@ -1,0 +1,35 @@
+.is-bold { font-weight: 600;}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-white { color: $font-light; }
+.text-dark { color: $font-dark; }
+.text-blue { color: $blue; }
+.text-gold { color: gold; }
+.text-green { color: $green; }
+
+.is-centered { justify-content: center; }
+
+@for $i from 1 through 6 {
+  .gutter-top-#{$i*5} { margin-top: (5 * $i)+px; }
+  .gutter-left-#{$i*5} { margin-left: (5 * $i)+px; }
+  .gutter-right-#{$i*5} { margin-right: (5 * $i)+px; }
+  .gutter-bottom-#{$i*5} { margin-bottom: (5 * $i)+px; }
+}
+
+.left-right {
+  display: flex;
+  align-items: baseline;
+
+  >:nth-child(2) {
+    margin-left: 1em;
+  }
+  &.valign {
+    align-items: center;
+  }
+  &.halign {
+    justify-content: center;
+  }
+}

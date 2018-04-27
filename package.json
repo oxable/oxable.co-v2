@@ -1,0 +1,10 @@
+{
+  "dependencies": {},
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "devDependencies": {
+    "node-sass": "^4.8.3"
+  }
+}

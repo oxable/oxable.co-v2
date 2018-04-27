@@ -1,0 +1,130 @@
+// NAVBAR
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em;
+  background-color: $nav-bg;
+  box-shadow: 0 0 10px #eee;
+  position: relative;
+  
+  &.is-fixed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  &.is-transparent {
+    background-color: $nav-bg;
+    box-shadow: none;
+    a:not(.nav-brand) {
+      color: $font-light;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    margin-right: 1.5em;
+    color: $font-dark;
+  }
+  .nav-brand {
+    display: inline-block;
+    font-size: $font-size-brand;
+    margin-left: 0.8em;
+  }
+  >.right {
+    margin-right: 1em;
+    @include phone {
+      display: none;
+    }
+  }
+  >.burger {
+    display: none;
+    margin-right: 1em;
+
+    >.trigger {
+      color: $font-light;
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    >.links {
+      max-height: 0;
+
+      overflow: hidden;
+      position: absolute;
+      background-color: $nav-bg;
+      width: 100%;
+      left: 0;
+      top: 100%;
+      padding: 0 1em 0 2em;
+      transition: .3s max-height ease;
+      >a {
+        display: block;
+        margin-top: 1.2em;
+
+        &:last-child {
+          margin-bottom: 1em;
+        }
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+    
+    &:focus > .links {
+      max-height: 70vh;
+    }
+    @include phone {
+      display: block;
+    }
+  }
+}
+
+// SECTION
+
+section {
+  padding: 1em 1em 3em 1em;
+  >.title {
+    text-align: center;
+    margin: 1em 10px;
+  }
+  >.content {
+    margin: 0 auto;
+    line-height: 1.5em;
+    max-width: 1024px;
+    text-align: center;
+  }
+}
+
+// GRID SYSTEM
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  &.is-gapped {
+    margin: -10px;
+    >.column {
+      padding: 10px;
+    }
+  }
+  >.column {
+    box-sizing: border-box;
+    @for $i from 12 through 1 {
+      &.is-#{$i} {
+        width: decimal-round(($i / 12), 6, ceil) * 100%;
+      }
+    }
+
+    @include phone {
+      @for $i from 12 through 1 {
+        &.is-#{$i} {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
