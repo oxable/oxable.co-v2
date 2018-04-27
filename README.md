@@ -4,7 +4,7 @@
 ### Instructions
 
 To start the development server, run:
-
+ `yarn global add parcel-bundler` (use `sudo` if required)
  `yarn start`
 
 For creating a production build:

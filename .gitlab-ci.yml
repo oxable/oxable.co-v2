@@ -8,7 +8,7 @@ pages:
   script:
   - yarn global add parcel-bundler --ignore-engines
   - yarn install
-  - yarn build --out-dir public
+  - yarn build
 
   artifacts:
     paths:
