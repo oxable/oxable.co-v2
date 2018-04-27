@@ -2,7 +2,7 @@
   "dependencies": {},
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --out-dir public"
+    "build": "parcel build index.html --out-dir public --public-url '.'"
   },
   "devDependencies": {
     "node-sass": "^4.8.3"
